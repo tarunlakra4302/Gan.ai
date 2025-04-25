@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect } from "react";
-import AnimatedNavbar from "@/components/AnimatedNavbar";
 
 export default function ClientBody({
   children,
@@ -16,7 +15,6 @@ export default function ClientBody({
 
   return (
     <body className="antialiased" suppressHydrationWarning>
-      <AnimatedNavbar />
       {children}
     </body>
   );

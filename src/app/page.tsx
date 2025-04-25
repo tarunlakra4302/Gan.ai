@@ -1,61 +1,58 @@
 "use client";
-import Link from "next/link";
+
 import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
+import { Card } from "@/components/ui/card";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const router = useRouter();
+
   return (
-    <main className="flex flex-col h-screen w-full items-center justify-center bg-gradient-to-br from-sky-50 to-indigo-50 relative overflow-hidden">
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, type: "spring", stiffness: 60 }}
-        className="z-10 flex flex-col gap-6 items-center"
-      >
-        <motion.h1
-          className="text-4xl md:text-6xl font-bold tracking-tight text-indigo-700 drop-shadow-md"
-          initial={{ scale: 0.9 }}
-          animate={{ scale: 1 }}
-          transition={{ delay: 0.2, duration: 0.6 }}
-        >
-          HealthVoice AI
-        </motion.h1>
-        <motion.p
-          className="text-lg md:text-xl text-indigo-900/80 mb-6 font-medium"
-          initial={{ opacity: 0, x: -30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.4, duration: 0.7 }}
-        >
-          Simplifying healthcare through voice.
-        </motion.p>
-        <motion.div
-          className="flex flex-row gap-5 w-full justify-center"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.6 }}
-        >
-          <Link href="/prescription" passHref legacyBehavior>
-            <Button size="lg" className="bg-indigo-600 text-white shadow-lg hover:bg-indigo-700 transition-colors">
-              Start Prescription
+    <main className="flex min-h-screen flex-col items-center justify-center p-6 bg-gradient-to-b from-blue-50 to-purple-50 dark:from-gray-900 dark:to-blue-950">
+      <div className="container max-w-6xl mx-auto">
+        <div className="text-center mb-12">
+          <h1 className="text-5xl md:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 mb-4">
+            HealthVoice AI
+          </h1>
+          <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            Simplifying healthcare through voice.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+          <Card className="p-6 border border-blue-100 dark:border-blue-900 hover:shadow-lg transition-shadow duration-300 bg-white/80 dark:bg-gray-800/80 backdrop-blur">
+            <h2 className="text-xl font-semibold mb-4 text-blue-600 dark:text-blue-400">Start Prescription</h2>
+            <p className="text-gray-600 dark:text-gray-300 mb-4">Upload your prescription or type medicine names to get simple voice explanations.</p>
+            <Button 
+              className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 transition-all duration-300"
+              onClick={() => router.push("/prescription")}
+            >
+              MediSpeak
             </Button>
-          </Link>
-          <Link href="/checkin" passHref legacyBehavior>
-            <Button size="lg" variant="outline" className="border-indigo-600 text-indigo-700 shadow-md hover:bg-indigo-50">
-              Start Post-Op Check-In
+          </Card>
+
+          <Card className="p-6 border border-purple-100 dark:border-purple-900 hover:shadow-lg transition-shadow duration-300 bg-white/80 dark:bg-gray-800/80 backdrop-blur">
+            <h2 className="text-xl font-semibold mb-4 text-purple-600 dark:text-purple-400">Start Post-Op Check-In</h2>
+            <p className="text-gray-600 dark:text-gray-300 mb-4">Daily check-ins via voice for post-surgery recovery monitoring.</p>
+            <Button 
+              className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 transition-all duration-300"
+              onClick={() => router.push("/post-op")}
+            >
+              Post-Op Assistant
             </Button>
-          </Link>
-        </motion.div>
-        <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 1 }}>
-          <Link href="/signup" passHref legacyBehavior>
-            <Button size="sm" className="mt-9 bg-white text-indigo-700 border-2 border-indigo-600 hover:bg-indigo-50 shadow-none">
-              Sign Up / Log In
-            </Button>
-          </Link>
-        </motion.div>
-      </motion.div>
-      {/* Decorative 3D/Animated BG element placeholder for later */}
-      <div className="absolute left-0 top-0 z-0 w-full h-full pointer-events-none select-none">
-        {/* Optionally add animated SVG or Three.js in future releases */}
+          </Card>
+        </div>
+
+        <div className="mt-10 text-center">
+          <Button
+            variant="outline"
+            className="border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-300"
+            onClick={() => router.push("/login")}
+          >
+            Sign Up / Log In
+          </Button>
+          <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">For a personalized experience</p>
+        </div>
       </div>
     </main>
   );
